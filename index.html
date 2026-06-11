@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Humaira Anzum Neha | Academic Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2D4A68;
+      --secondary: #6B8E8A;
+      --highlight: #D8CBB5;
+      --background: #FCFBF8;
+      --card: #FFFFFF;
+      --text: #1F2937;
+      --muted: #64748B;
+      --border: #E2E8F0;
+      --dark-bg: #142234;
+      --dark-card: #1B2E44;
+      --shadow: 0 24px 70px rgba(31, 41, 55, 0.10);
+      --radius: 28px;
+    }
+
+    [data-theme="dark"] {
+      --background: #0F172A;
+      --card: #182236;
+      --text: #F8FAFC;
+      --muted: #CBD5E1;
+      --border: #334155;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--highlight));
+      z-index: 9999;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 4px;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      background: rgba(252, 251, 248, 0.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] .navbar {
+      background: rgba(15, 23, 42, 0.94);
+    }
+
+    .nav-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 16px 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    [data-theme="dark"] .brand {
+      color: var(--highlight);
+    }
+
+    .nav-links,
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    [data-theme="dark"] .nav-links a:hover,
+    [data-theme="dark"] .nav-links a.active {
+      color: var(--highlight);
+    }
+
+    .icon-link {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-size: 0.92rem;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 12px 30px rgba(45, 74, 104, 0.18);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: #21394f;
+    }
+
+    .btn-outline {
+      border-color: var(--border);
+      color: var(--primary);
+      background: transparent;
+    }
+
+    [data-theme="dark"] .btn-outline {
+      color: var(--highlight);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    .theme-toggle,
+    .mobile-toggle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .mobile-toggle {
+      display: none;
+    }
+
+    section {
+      padding: 110px 34px;
+      scroll-margin-top: 90px;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .section-kicker {
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 0.95;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin-bottom: 24px;
+      color: var(--primary);
+    }
+
+    [data-theme="dark"] .section-title {
+      color: var(--highlight);
+    }
+
+    .section-lead {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 120px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero:before {
+      content: '';
+      position: absolute;
+      width: 650px;
+      height: 650px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(216, 203, 181, 0.42), transparent 65%);
+      top: 5%;
+      right: -180px;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 70px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 10vw, 8.8rem);
+      line-height: 0.86;
+      letter-spacing: -0.065em;
+      color: var(--primary);
+      margin-bottom: 24px;
+    }
+
+    [data-theme="dark"] .hero h1 {
+      color: var(--highlight);
+    }
+
+    .subtitle {
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 22px;
+    }
+
+    .hero-statement {
+      font-size: clamp(1.35rem, 3vw, 2.05rem);
+      line-height: 1.35;
+      max-width: 790px;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .intro {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 34px;
+      font-size: 1.02rem;
+    }
+
+    .currently {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(31, 41, 55, 0.06);
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .currently span {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    [data-theme="dark"] .currently span {
+      color: var(--highlight);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .portrait-wrap {
+      position: relative;
+      min-height: 610px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portrait {
+      width: min(420px, 82vw);
+      height: min(420px, 82vw);
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--highlight), var(--secondary));
+      border: 18px solid var(--card);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .portrait::before {
+      content: 'HN';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7rem;
+      color: rgba(255,255,255,0.86);
+      font-weight: 700;
+    }
+
+    .portrait-note {
+      position: absolute;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-align: center;
+      width: 100%;
+    }
+
+    .float-label {
+      position: absolute;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 36px rgba(31, 41, 55, 0.08);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .float-label:after {
+      content: '';
+      position: absolute;
+      height: 1px;
+      width: 70px;
+      background: var(--border);
+      top: 50%;
+    }
+
+    .label-1 { top: 86px; left: 40px; }
+    .label-1:after { left: 100%; }
+    .label-2 { top: 130px; right: 0; animation-delay: 0.8s; }
+    .label-2:after { right: 100%; }
+    .label-3 { bottom: 150px; left: 0; animation-delay: 1.2s; }
+    .label-3:after { left: 100%; }
+    .label-4 { bottom: 190px; right: 30px; animation-delay: 1.8s; }
+    .label-4:after { right: 100%; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .timeline-shell {
+      margin-top: 64px;
+      overflow-x: auto;
+      padding-bottom: 20px;
+    }
+
+    .journey-line {
+      min-width: 1180px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 22px;
+      position: relative;
+    }
+
+    .journey-line:before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 7%;
+      right: 7%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--highlight));
+    }
+
+    .milestone {
+      position: relative;
+      padding-top: 70px;
+    }
+
+    .dot {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: var(--background);
+      border: 8px solid var(--secondary);
+      z-index: 2;
+    }
+
+    .milestone-card,
+    .feature-card,
+    .theme-card,
+    .learning-card,
+    .teaching-item,
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: 0 16px 46px rgba(31, 41, 55, 0.05);
+    }
+
+    .milestone-card h3,
+    .feature-card h3,
+    .theme-card h3,
+    .learning-card h3,
+    .teaching-item h3 {
+      color: var(--primary);
+      font-size: 1.13rem;
+      margin-bottom: 12px;
+    }
+
+    [data-theme="dark"] .milestone-card h3,
+    [data-theme="dark"] .feature-card h3,
+    [data-theme="dark"] .theme-card h3,
+    [data-theme="dark"] .learning-card h3,
+    [data-theme="dark"] .teaching-item h3 {
+      color: var(--highlight);
+    }
+
+    .milestone-card p,
+    .feature-card p,
+    .theme-card p,
+    .learning-card p,
+    .teaching-item p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .status {
+      display: inline-flex;
+      margin-bottom: 18px;
+      color: var(--secondary);
+      background: rgba(107, 142, 138, 0.10);
+      border: 1px solid rgba(107, 142, 138, 0.20);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .featured-layout {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .project-media {
+      min-height: 280px;
+      background: linear-gradient(135deg, rgba(45, 74, 104, 0.92), rgba(107, 142, 138, 0.85)), url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1400&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 28px;
+      color: white;
+    }
+
+    .project-media.small {
+      min-height: 190px;
+      background-image: linear-gradient(135deg, rgba(45, 74, 104, 0.9), rgba(216, 203, 181, 0.72)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop');
+    }
+
+    .project-body {
+      padding: 34px;
+    }
+
+    .project-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    [data-theme="dark"] .project-body h3 {
+      color: var(--highlight);
+    }
+
+    .project-body p,
+    .project-body li {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .project-body ul {
+      margin: 15px 0 22px 18px;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .supporting-stack {
+      display: grid;
+      gap: 24px;
+    }
+
+    .themes-grid,
+    .learning-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 48px;
+    }
+
+    .videos-section {
+      background: var(--dark-bg);
+      color: white;
+    }
+
+    .videos-section .section-title,
+    .videos-section .section-kicker {
+      color: var(--highlight);
+    }
+
+    .videos-section .section-lead {
+      color: #CBD5E1;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 52px;
+    }
+
+    .video-card {
+      border-radius: 30px;
+      min-height: 300px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.25), rgba(45, 74, 104, 0.92)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-card:nth-child(2) {
+      background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.25), rgba(45, 74, 104, 0.92)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop');
+    }
+
+    .video-card:nth-child(3) {
+      background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.25), rgba(45, 74, 104, 0.92)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop');
+    }
+
+    .play {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--primary);
+      font-size: 1.8rem;
+      opacity: 0;
+      transform: scale(0.85);
+      transition: all 0.25s ease;
+      align-self: center;
+    }
+
+    .video-card:hover .play {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .publication-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 42px;
+      margin-bottom: 28px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 9px 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .pub-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pub-title {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    [data-theme="dark"] .pub-title {
+      color: var(--highlight);
+    }
+
+    .pub-meta,
+    .pub-links {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .pub-links a {
+      color: var(--secondary);
+      font-weight: 700;
+      margin-right: 12px;
+    }
+
+    .teaching-timeline {
+      margin-top: 52px;
+      display: grid;
+      gap: 18px;
+      position: relative;
+    }
+
+    .evolving-grid {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr 0.9fr;
+      gap: 24px;
+    }
+
+    .evolving-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 36px;
+    }
+
+    .evolving-card.featured {
+      background: linear-gradient(135deg, rgba(45, 74, 104, 0.96), rgba(107, 142, 138, 0.9));
+      color: white;
+      min-height: 370px;
+    }
+
+    .evolving-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.1rem;
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .evolving-card p {
+      color: var(--muted);
+    }
+
+    .evolving-card.featured p {
+      color: #E2E8F0;
+    }
+
+    .quote-section {
+      padding: 130px 34px;
+      background: linear-gradient(135deg, rgba(216, 203, 181, 0.35), rgba(107, 142, 138, 0.10));
+    }
+
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 5.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      color: var(--primary);
+      max-width: 1100px;
+    }
+
+    [data-theme="dark"] .quote-text {
+      color: var(--highlight);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 34px;
+      margin-top: 48px;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .contact-links a {
+      color: var(--primary);
+      font-weight: 700;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    [data-theme="dark"] .contact-links a {
+      color: var(--highlight);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--background);
+      color: var(--text);
+      padding: 15px 16px;
+      font: inherit;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.82);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 24px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(900px, 96vw);
+      background: var(--card);
+      border-radius: 28px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      border: 0;
+      background: var(--primary);
+      color: white;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .video-placeholder {
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 30px;
+      margin-top: 36px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      padding: 36px 34px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1100px) {
+      .nav-links,
+      .nav-actions .icon-link {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: inline-block;
+      }
+
+      .nav-links.open {
+        display: grid;
+        position: absolute;
+        top: 75px;
+        left: 20px;
+        right: 20px;
+        background: var(--card);
+        padding: 24px;
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-grid,
+      .featured-layout,
+      .contact-grid,
+      .evolving-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-3,
+      .themes-grid,
+      .learning-grid,
+      .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      section {
+        padding: 82px 20px;
+      }
+
+      .nav-inner {
+        padding: 14px 18px;
+      }
+
+      .brand {
+        font-size: 1.35rem;
+      }
+
+      .nav-actions .btn {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 105px;
+      }
+
+      .portrait-wrap {
+        min-height: 430px;
+      }
+
+      .float-label,
+      .float-label:after {
+        display: none;
+      }
+
+      .cards-3,
+      .themes-grid,
+      .learning-grid,
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .journey-line {
+        min-width: 980px;
+      }
+
+      .project-body h3 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="brand">Humaira Anzum Neha</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#journey">Journey</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#videos">Videos</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <a class="icon-link" href="#" aria-label="Google Scholar">Scholar</a>
+        <a class="icon-link" href="#" aria-label="GitHub">GitHub</a>
+        <a class="icon-link" href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a class="icon-link" href="mailto:your.email@example.com" aria-label="Email">Email</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☾</button>
+        <a href="#" class="btn btn-primary">Download CV</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="fade-in">
+          <p class="subtitle">Lecturer • Master’s Student • Researcher</p>
+          <h1>Humaira<br>Anzum Neha</h1>
+          <p class="hero-statement">Exploring how intelligent technologies can support people, improve accessibility, and address real-world challenges.</p>
+          <div class="currently">Currently Exploring: <span id="rotatingText">Human-Computer Interaction</span></div>
+          <p class="intro">I am a Lecturer in Computer Science & Engineering and a Master’s student exploring research at the intersection of intelligent systems, human-centered technology, and real-world applications. My previous work includes assistive technology systems, healthcare data collection, and AI-enabled applications, while my current research interest is growing toward Human-Computer Interaction and emerging AI systems.</p>
+          <div class="hero-buttons">
+            <a href="#journey" class="btn btn-primary">Explore My Journey</a>
+            <a href="#" class="btn btn-outline">Download CV</a>
+          </div>
+        </div>
+        <div class="portrait-wrap fade-in">
+          <div class="float-label label-1">Research</div>
+          <div class="float-label label-2">Teaching</div>
+          <div class="portrait" aria-label="Professional portrait placeholder"></div>
+          <div class="float-label label-3">Learning</div>
+          <div class="float-label label-4">Building</div>
+          <p class="portrait-note">Replace this placeholder with a professional portrait.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey">
+      <div class="container">
+        <p class="section-kicker fade-in">Research Journey</p>
+        <h2 class="section-title fade-in">A growing research identity shaped by learning, building, and teaching.</h2>
+        <p class="section-lead fade-in">This timeline presents the development of my research direction as a gradual journey—from learning AI foundations to exploring human-centered technology and future doctoral research opportunities.</p>
+        <div class="timeline-shell fade-in">
+          <div class="journey-line">
+            <div class="milestone"><div class="dot"></div><div class="milestone-card"><h3>Learning AI Foundations</h3><p>My journey began with curiosity about how computational systems can learn from data and support practical problem solving.</p></div></div>
+            <div class="milestone"><div class="dot"></div><div class="milestone-card"><h3>Assistive Technology Projects</h3><p>I explored how computer vision can help visually impaired users interpret surrounding environments more independently.</p></div></div>
+            <div class="milestone"><div class="dot"></div><div class="milestone-card"><h3>Healthcare Applications</h3><p>I became interested in how digital platforms and AI-supported tools can assist healthcare data collection and research workflows.</p></div></div>
+            <div class="milestone"><div class="dot"></div><div class="milestone-card"><h3>First Publications</h3><p>Early research outputs helped me understand the discipline, structure, and communication needed for academic contribution.</p></div></div>
+            <div class="milestone"><div class="dot"></div><div class="milestone-card"><h3>Teaching as Lecturer</h3><p>Teaching strengthened my ability to explain complex ideas clearly and mentor students through project-based learning.</p></div></div>
+            <div class="milestone"><div class="dot"></div><div class="milestone-card"><h3>Current HCI Research</h3><p>I am now developing stronger qualitative research skills and studying how people experience emerging digital technologies.</p></div></div>
+            <div class="milestone"><div class="dot"></div><div class="milestone-card"><h3>Looking Ahead</h3><p>I aim to build deeper research expertise in human-centered AI, accessibility, medical AI, and responsible intelligent systems.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container">
+        <p class="section-kicker fade-in">What I’m Working On</p>
+        <h2 class="section-title fade-in">Current work at the intersection of people, systems, and real-world needs.</h2>
+        <div class="cards-3">
+          <article class="feature-card fade-in"><span class="status">Research in Progress</span><h3>Ongoing HCI Research</h3><p>I am currently working on a Human-Computer Interaction research project that explores how people experience and engage with emerging digital or AI-assisted technologies. This work is helping me develop stronger skills in qualitative research, user-centered thinking, and human-centered system design.</p></article>
+          <article class="feature-card fade-in"><span class="status">Ongoing</span><h3>Master’s Studies</h3><p>Alongside my teaching responsibilities, I am pursuing graduate studies to strengthen my research foundation and explore future directions in Computer Science. My current academic focus includes research methods, intelligent systems, and applied AI.</p></article>
+          <article class="feature-card fade-in"><span class="status">Building Research Expertise</span><h3>Research Exploration</h3><p>I am actively exploring Large Language Models, Human-AI Interaction, Computer Vision, and Medical AI to understand how these areas can contribute to meaningful, people-centered research problems.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <p class="section-kicker fade-in">Featured Work</p>
+        <h2 class="section-title fade-in">Selected projects grounded in accessibility, healthcare, and applied AI.</h2>
+        <div class="featured-layout">
+          <article class="project-card fade-in">
+            <div class="project-media"><strong>Featured Project</strong></div>
+            <div class="project-body">
+              <h3>Assistive Object Identification System</h3>
+              <p>Developed an assistive object identification system for visually impaired users using a pretrained YOLOv8 model, locally curated datasets, Bangladesh currency recognition, and Raspberry Pi deployment for real-world inference.</p>
+              <ul>
+                <li>Dataset preparation and curation</li>
+                <li>Indoor object and Bangladesh currency detection setup</li>
+                <li>System integration using pretrained YOLOv8</li>
+                <li>Raspberry Pi deployment for edge inference</li>
+                <li>Testing and evaluation in real-world scenarios</li>
+              </ul>
+              <div class="project-actions"><a class="btn btn-primary" href="#">Architecture Diagram</a><a class="btn btn-outline" href="#videos">Demo Video</a><a class="btn btn-outline" href="#">Publication Link</a></div>
+            </div>
+          </article>
+          <div class="supporting-stack">
+            <article class="project-card fade-in"><div class="project-media small"><strong>Supporting Project</strong></div><div class="project-body"><h3>Smart Spectacle for Visual Assistance</h3><p>Designed and implemented a smart spectacle prototype for visually impaired users by integrating object detection and OCR-based text recognition features.</p><div class="project-actions"><a class="btn btn-outline" href="#">Prototype Images</a><a class="btn btn-outline" href="#">Publication</a></div></div></article>
+            <article class="project-card fade-in"><div class="project-media small"><strong>Supporting Project</strong></div><div class="project-body"><h3>Healthcare Data Collection Platform</h3><p>Developed a mobile application to streamline medical data collection for glucose and hemoglobin-level-related research, with integrated AI-based inference support.</p><div class="project-actions"><a class="btn btn-outline" href="#">Screenshots</a><a class="btn btn-outline" href="#">Architecture</a></div></div></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <p class="section-kicker fade-in">Research Themes</p>
+        <h2 class="section-title fade-in">Problem spaces that guide my work.</h2>
+        <div class="themes-grid">
+          <article class="theme-card fade-in"><h3>Human-Centered Computing</h3><p>I am interested in understanding how people interact with emerging technologies and how these systems can be designed to better support real human needs.</p></article>
+          <article class="theme-card fade-in"><h3>Assistive and Intelligent Technologies</h3><p>My previous work focused on applying AI-enabled systems to support visually impaired users through object detection, currency recognition, wearable prototypes, and real-world deployment.</p></article>
+          <article class="theme-card fade-in"><h3>Perception Systems</h3><p>I have explored computer vision-based systems that help interpret visual information from the surrounding environment, especially in assistive technology contexts.</p></article>
+          <article class="theme-card fade-in"><h3>Healthcare Technologies</h3><p>I am interested in how digital platforms and AI-enabled tools can support healthcare research, data collection, and future medical applications.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="videos-section" id="videos">
+      <div class="container">
+        <p class="section-kicker fade-in">Research Videos</p>
+        <h2 class="section-title fade-in">A cinematic space for demos, presentations, and teaching stories.</h2>
+        <p class="section-lead fade-in">Use this section for YouTube embeds, local MP4 uploads, project walkthroughs, and teaching showcase videos.</p>
+        <div class="video-grid">
+          <article class="video-card fade-in" data-video="Project Demonstrations"><span>Project Demonstrations</span><div class="play">▶</div><h3>Assistive AI in action</h3></article>
+          <article class="video-card fade-in" data-video="Research Presentations"><span>Research Presentations</span><div class="play">▶</div><h3>Explaining research ideas</h3></article>
+          <article class="video-card fade-in" data-video="Teaching Showcase"><span>Teaching Showcase</span><div class="play">▶</div><h3>Teaching and mentoring</h3></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container">
+        <p class="section-kicker fade-in">Selected Publications</p>
+        <h2 class="section-title fade-in">A minimal academic record.</h2>
+        <div class="publication-controls fade-in">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="assistive">Assistive Technology</button>
+          <button class="filter-btn" data-filter="healthcare">Healthcare</button>
+          <button class="filter-btn" data-filter="hci">HCI</button>
+          <button class="filter-btn" data-filter="ai">AI</button>
+        </div>
+        <div class="pub-list fade-in">
+          <article class="pub-item" data-category="assistive ai"><p class="pub-title">Assistive Object Identification System for Visually Impaired Users</p><p class="pub-meta">Humaira Anzum Neha, et al. • Conference / Journal • Year</p><p class="pub-links"><a href="#">DOI</a><a href="#">PDF</a></p></article>
+          <article class="pub-item" data-category="assistive ai"><p class="pub-title">Smart Spectacle for Visual Assistance Using Object Detection and OCR</p><p class="pub-meta">Humaira Anzum Neha, et al. • Conference / Journal • Year</p><p class="pub-links"><a href="#">DOI</a><a href="#">PDF</a></p></article>
+          <article class="pub-item" data-category="healthcare ai"><p class="pub-title">Healthcare Data Collection Platform with AI-Based Inference Support</p><p class="pub-meta">Humaira Anzum Neha, et al. • Conference / Journal • Year</p><p class="pub-links"><a href="#">DOI</a><a href="#">PDF</a></p></article>
+          <article class="pub-item" data-category="hci ai"><p class="pub-title">Ongoing HCI Research on Emerging AI-Assisted Technologies</p><p class="pub-meta">Research in Progress • Selected future work</p><p class="pub-links"><a href="#">Project Page</a></p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="teaching">
+      <div class="container">
+        <p class="section-kicker fade-in">Teaching & Mentoring</p>
+        <h2 class="section-title fade-in">Teaching as part of research growth.</h2>
+        <div class="teaching-timeline">
+          <article class="teaching-item fade-in"><h3>Courses Taught</h3><p>Computer Science & Engineering courses involving programming, databases, systems, software development, and project-based learning.</p></article>
+          <article class="teaching-item fade-in"><h3>Project Supervision</h3><p>Guiding students through applied computing projects with emphasis on problem formulation, implementation quality, and clear presentation.</p></article>
+          <article class="teaching-item fade-in"><h3>Research Mentoring</h3><p>Supporting students as they learn how to read papers, design experiments, interpret results, and communicate technical work.</p></article>
+          <article class="teaching-item fade-in"><h3>Academic Activities</h3><p>Participating in course planning, evaluation, student advising, and research-oriented academic development.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <p class="section-kicker fade-in">Research Interests Evolving</p>
+        <h2 class="section-title fade-in">From applied AI systems toward human-centered research questions.</h2>
+        <div class="evolving-grid">
+          <article class="evolving-card featured fade-in"><h3>Current Focus: Human-Computer Interaction</h3><p>I am currently developing my research direction through an ongoing HCI project and studying how people interact with digital and AI-assisted systems.</p></article>
+          <article class="evolving-card fade-in"><h3>Emerging Interests</h3><p>Large Language Models and Human-AI Collaboration. I am interested in exploring how LLMs can support communication, creativity, accessibility, and decision-making while preserving human agency.</p></article>
+          <article class="evolving-card fade-in"><h3>Previous Experience</h3><p>Assistive Technologies, Computer Vision Applications, and Healthcare Technology. My earlier projects helped me understand how AI systems can be applied in real-world contexts.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <p class="section-kicker fade-in">What I’m Currently Learning</p>
+        <h2 class="section-title fade-in">A research notebook in progress.</h2>
+        <div class="learning-grid">
+          <article class="learning-card fade-in"><h3>Currently Reading</h3><p>Recent literature in Human-Computer Interaction, accessibility, and human-centered AI.</p></article>
+          <article class="learning-card fade-in"><h3>Currently Learning</h3><p>Research methods, Large Language Models, Computer Vision, and Medical AI.</p></article>
+          <article class="learning-card fade-in"><h3>Currently Exploring</h3><p>How intelligent technologies can support people in communication, accessibility, healthcare, and everyday decision-making.</p></article>
+          <article class="learning-card fade-in"><h3>Future Interests</h3><p>Human-AI collaboration, assistive AI, medical imaging, and responsible AI systems.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-section">
+      <div class="container fade-in">
+        <p class="quote-text">“Through ongoing research, teaching, and graduate studies, I am exploring how intelligent technologies can be designed and applied to create meaningful impact for people and society.”</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <p class="section-kicker fade-in">Contact</p>
+        <h2 class="section-title fade-in">Let’s connect around research, teaching, and meaningful technology.</h2>
+        <div class="contact-grid">
+          <div class="contact-card fade-in">
+            <h3>Professional Links</h3>
+            <p class="section-lead">Replace the placeholder links with your current academic and professional profiles.</p>
+            <div class="contact-links">
+              <a href="mailto:your.email@example.com">Email</a>
+              <a href="#">Google Scholar</a>
+              <a href="#">GitHub</a>
+              <a href="#">LinkedIn</a>
+            </div>
+          </div>
+          <form class="contact-card contact-form fade-in" onsubmit="event.preventDefault(); alert('This is a front-end demo. Connect this form to Formspree, Netlify Forms, or your backend.');">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Your email" required>
+            <textarea placeholder="Your message" required></textarea>
+            <button class="btn btn-primary" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Humaira Anzum Neha. Designed as a research storytelling portfolio.
+  </footer>
+
+  <div class="modal" id="videoModal">
+    <div class="modal-box">
+      <button class="close-modal" id="closeModal">×</button>
+      <div class="video-placeholder" id="modalContent">Video embed area</div>
+    </div>
+  </div>
+
+  <script>
+    const rotatingWords = ['Human-Computer Interaction', 'Large Language Models', 'Computer Vision', 'Medical AI'];
+    const rotatingText = document.getElementById('rotatingText');
+    let wordIndex = 0;
+    setInterval(() => {
+      wordIndex = (wordIndex + 1) % rotatingWords.length;
+      rotatingText.textContent = rotatingWords[wordIndex];
+    }, 2200);
+
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      progressBar.style.width = `${(scrollTop / docHeight) * 100}%`;
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 140) current = section.id;
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.body.getAttribute('data-theme') === 'dark';
+      document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      themeToggle.textContent = isDark ? '☾' : '☀';
+    });
+
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinksBox = document.getElementById('navLinks');
+    mobileToggle.addEventListener('click', () => navLinksBox.classList.toggle('open'));
+    navLinks.forEach(link => link.addEventListener('click', () => navLinksBox.classList.remove('open')));
+
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const pubItems = document.querySelectorAll('.pub-item');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+        pubItems.forEach(item => {
+          item.style.display = filter === 'all' || item.dataset.category.includes(filter) ? 'block' : 'none';
+        });
+      });
+    });
+
+    const modal = document.getElementById('videoModal');
+    const modalContent = document.getElementById('modalContent');
+    document.querySelectorAll('.video-card').forEach(card => {
+      card.addEventListener('click', () => {
+        modalContent.innerHTML = `<div><h2>${card.dataset.video}</h2><p>Replace this placeholder with a YouTube iframe or local MP4 video.</p></div>`;
+        modal.classList.add('active');
+      });
+    });
+    document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
