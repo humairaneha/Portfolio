@@ -265,7 +265,7 @@
 
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(4rem, 10vw, 8.8rem);
+      font-size: clamp(3.4rem, 7vw, 6.4rem);
       line-height: 0.86;
       letter-spacing: -0.065em;
       color: var(--primary);
@@ -300,25 +300,46 @@
     }
 
     .currently {
-      display: inline-flex;
-      align-items: center;
+      display: flex;
+      align-items: flex-start;
       gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(31, 41, 55, 0.06);
+      flex-wrap: wrap;
       margin-bottom: 22px;
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 0.96rem;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
+    }
+
+    .currently strong {
+      color: var(--primary);
+      font-weight: 700;
+      margin-right: 2px;
     }
 
     .currently span {
       color: var(--primary);
-      font-weight: 700;
+      font-weight: 600;
+      position: relative;
+      padding: 7px 12px;
+      border: 1px solid rgba(107, 142, 138, 0.38);
+      border-radius: 999px;
+      background: transparent;
+      line-height: 1.2;
+    }
+
+    .currently span:not(:last-child)::after {
+      content: none;
     }
 
     [data-theme="dark"] .currently span {
+      color: var(--highlight);
+      border-color: rgba(216, 203, 181, 0.34);
+    }
+
+    [data-theme="dark"] .currently strong {
       color: var(--highlight);
     }
 
@@ -330,19 +351,22 @@
 
     .portrait-wrap {
       position: relative;
-      min-height: 610px;
+      min-height: 540px;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
+      gap: 22px;
     }
 
     .portrait {
-      width: min(420px, 82vw);
-      height: min(420px, 82vw);
+      width: min(390px, 78vw);
+      height: min(390px, 78vw);
       border-radius: 50%;
       background: linear-gradient(145deg, var(--highlight), var(--secondary));
-      border: 18px solid var(--card);
-      box-shadow: var(--shadow);
+      border: 10px solid rgba(216, 203, 181, 0.42);
+      outline: 1px solid var(--border);
+      box-shadow: 0 28px 70px rgba(31, 41, 55, 0.14);
       display: grid;
       place-items: center;
       overflow: hidden;
@@ -358,14 +382,52 @@
     }
 
     .portrait-note {
-      position: absolute;
-      bottom: 70px;
-      left: 50%;
-      transform: translateX(-50%);
       color: var(--muted);
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       text-align: center;
-      width: 100%;
+      margin-top: 12px;
+    }
+
+    .portrait-panel {
+      width: min(460px, 92vw);
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .portrait-tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .portrait-tags span {
+      padding: 7px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(107, 142, 138, 0.38);
+      color: var(--primary);
+      background: transparent;
+      font-size: 0.84rem;
+      font-weight: 700;
+      position: relative;
+      line-height: 1.2;
+    }
+
+    .portrait-tags span:not(:last-child)::after {
+      content: none;
+    }
+
+    [data-theme="dark"] .portrait-tags span {
+      color: var(--highlight);
+      border-color: rgba(216, 203, 181, 0.34);
+      background: transparent;
     }
 
     .float-label {
@@ -406,44 +468,60 @@
 
     .timeline-shell {
       margin-top: 64px;
-      overflow-x: auto;
-      padding-bottom: 20px;
+      overflow: visible;
+      padding-bottom: 0;
     }
 
     .journey-line {
-      min-width: 1180px;
+      max-width: 980px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 22px;
+      grid-template-columns: 1fr;
+      gap: 24px;
       position: relative;
     }
 
     .journey-line:before {
       content: '';
       position: absolute;
-      top: 28px;
-      left: 7%;
-      right: 7%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--highlight));
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, var(--primary), var(--secondary), var(--highlight));
+      opacity: 0.8;
     }
 
     .milestone {
       position: relative;
-      padding-top: 70px;
+      display: grid;
+      grid-template-columns: 1fr 54px 1fr;
+      align-items: stretch;
+      min-height: 165px;
+    }
+
+    .milestone:nth-child(odd) .milestone-card {
+      grid-column: 1;
+      text-align: right;
+    }
+
+    .milestone:nth-child(even) .milestone-card {
+      grid-column: 3;
     }
 
     .dot {
-      position: absolute;
-      top: 14px;
-      left: 50%;
-      width: 30px;
-      height: 30px;
-      transform: translateX(-50%);
+      grid-column: 2;
+      align-self: start;
+      justify-self: center;
+      width: 24px;
+      height: 24px;
+      margin-top: 28px;
       border-radius: 50%;
       background: var(--background);
-      border: 8px solid var(--secondary);
+      border: 7px solid var(--secondary);
       z-index: 2;
+      box-shadow: 0 0 0 8px var(--background);
     }
 
     .milestone-card,
@@ -457,6 +535,13 @@
       border-radius: var(--radius);
       padding: 30px;
       box-shadow: 0 16px 46px rgba(31, 41, 55, 0.05);
+    }
+
+    .milestone-card {
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .milestone-card h3,
@@ -951,8 +1036,44 @@
         grid-template-columns: 1fr;
       }
 
+      .hero h1 {
+        font-size: clamp(3.1rem, 14vw, 4.7rem);
+      }
+
+      .portrait-wrap {
+        min-height: auto;
+      }
+
       .journey-line {
-        min-width: 980px;
+        max-width: 100%;
+      }
+
+      .journey-line:before {
+        left: 12px;
+        transform: none;
+      }
+
+      .milestone {
+        grid-template-columns: 34px 1fr;
+        min-height: auto;
+      }
+
+      .milestone:nth-child(odd) .milestone-card,
+      .milestone:nth-child(even) .milestone-card {
+        grid-column: 2;
+        text-align: left;
+      }
+
+      .dot {
+        grid-column: 1;
+        width: 22px;
+        height: 22px;
+        margin-top: 26px;
+        justify-self: start;
+      }
+
+      .milestone-card {
+        min-height: auto;
       }
 
       .project-body h3 {
@@ -978,12 +1099,12 @@
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-actions">
-        <a class="icon-link" href="#" aria-label="Google Scholar">Scholar</a>
-        <a class="icon-link" href="#" aria-label="GitHub">GitHub</a>
-        <a class="icon-link" href="#" aria-label="LinkedIn">LinkedIn</a>
-        <a class="icon-link" href="mailto:your.email@example.com" aria-label="Email">Email</a>
+        <a class="icon-link" href="https://scholar.google.com/" target="_blank" rel="noopener" aria-label="Google Scholar">Scholar</a>
+        <a class="icon-link" href="https://github.com/humairaneha" target="_blank" rel="noopener" aria-label="GitHub">GitHub</a>
+        <a class="icon-link" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+        <a class="icon-link" href="mailto:humairaanzumn@gmail.com" aria-label="Email">Email</a>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☾</button>
-        <a href="#" class="btn btn-primary">Download CV</a>
+        <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA3IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgNyAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0F1dGhvciAoXChhbm9ueW1vdXNcKSkgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDYxMjE1MzMxMSswMCcwMCcpIC9DcmVhdG9yIChcKHVuc3BlY2lmaWVkXCkpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDYxMjE1MzMxMSswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0IChcKHVuc3BlY2lmaWVkXCkpIC9UaXRsZSAoXChhbm9ueW1vdXNcKSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNCAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjggMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggNTA1Cj4+CnN0cmVhbQpHYXQ9JmQ7SVlsJ1JmLXBjPEp1T0FpTkwuaCZEIT8sLjFGWzc9QkM+UyZTQjkxWVdMTmc7aXE3IlhZXXVlQjFYIXE6cD5CXF01SSZuSWtmOEJSayI9Xis5Q1ROMyVcJ1UnMC4kXjFXJ18iMG50dVVtTkRPOSUzKmozdUFoLUo5cjJSWUxxPERBJkQ4IzcrdE1XRUNWOzZFQVdeOVBqcUZVR2dlUUs0LEtzNGdHWlI+OHEnLCMpcWVrLyoqMEByKzFyKFhNImQ5LXFLXk43YDowKE1jb1E0QkxIRmAmXE1LOlJUaUdWKSs4bUhcZE0zTS1TWEYhUWopaFMuSWdxQ0A1KmpLNTo2ITZaJkopOSNXM1dmbGlTakA3T091JlFRJmJcSD9CaGBmSGdpQnBXKio3TmgkLlZwP0wiIStIO1ovbkEpJTwrU2UqQFEoUF5BaGctWEsjV05CLkBnQ1VIQzM0MmIhUmBoKWtARDpDaSpqMFhhcVc6WnA9bXUwLUBXSCdzbzMyJCstYTlLJ2xUaWplO29eKFNOW0s9IXI/JD51K00xanVkZFZuSVJKZzMvY2RRLkNXJz0uSDAkZU4tOGYnVFpcIkQ+Y2VNO2VKbUJuaDdnXFUxKktnUVdMNDVDLHIvSU0mVGtJVDVRbzZOXzNTY0xIPmxRP34+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgOQowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDEwMiAwMDAwMCBuIAowMDAwMDAwMjA5IDAwMDAwIG4gCjAwMDAwMDAzMjEgMDAwMDAgbiAKMDAwMDAwMDUyNCAwMDAwMCBuIAowMDAwMDAwNTkyIDAwMDAwIG4gCjAwMDAwMDA4NzIgMDAwMDAgbiAKMDAwMDAwMDkzMSAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzw5YjljZTk4ZTJiMzcyOGZkZmFlYmQ5MmRiNWUzOGM5MD48OWI5Y2U5OGUyYjM3MjhmZGZhZWJkOTJkYjVlMzhjOTA+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDYgMCBSCi9Sb290IDUgMCBSCi9TaXplIDkKPj4Kc3RhcnR4cmVmCjE1MjYKJSVFT0YK" download="Humaira_Anzum_Neha_CV_Demo.pdf" class="btn btn-primary cv-download">Download CV</a>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Open menu">☰</button>
       </div>
     </div>
@@ -996,20 +1117,24 @@
           <p class="subtitle">Lecturer • Master’s Student • Researcher</p>
           <h1>Humaira<br>Anzum Neha</h1>
           <p class="hero-statement">Exploring how intelligent technologies can support people, improve accessibility, and address real-world challenges.</p>
-          <div class="currently">Currently Exploring: <span id="rotatingText">Human-Computer Interaction</span></div>
+          <div class="currently static-currently"><strong>Currently Exploring:</strong> <span>Human-Computer Interaction</span> <span>Large Language Models</span> <span>Computer Vision</span> <span>Medical AI</span></div>
           <p class="intro">I am a Lecturer in Computer Science & Engineering and a Master’s student exploring research at the intersection of intelligent systems, human-centered technology, and real-world applications. My previous work includes assistive technology systems, healthcare data collection, and AI-enabled applications, while my current research interest is growing toward Human-Computer Interaction and emerging AI systems.</p>
           <div class="hero-buttons">
             <a href="#journey" class="btn btn-primary">Explore My Journey</a>
-            <a href="#" class="btn btn-outline">Download CV</a>
+            <a href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUgo+PgplbmRvYmoKMiAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyAvTmFtZSAvRjEgL1N1YnR5cGUgL1R5cGUxIC9UeXBlIC9Gb250Cj4+CmVuZG9iagozIDAgb2JqCjw8Ci9CYXNlRm9udCAvSGVsdmV0aWNhLUJvbGQgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YyIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNCAwIG9iago8PAovQ29udGVudHMgOCAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCA3IDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9QYWdlTW9kZSAvVXNlTm9uZSAvUGFnZXMgNyAwIFIgL1R5cGUgL0NhdGFsb2cKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0F1dGhvciAoXChhbm9ueW1vdXNcKSkgL0NyZWF0aW9uRGF0ZSAoRDoyMDI2MDYxMjE1MzMxMSswMCcwMCcpIC9DcmVhdG9yIChcKHVuc3BlY2lmaWVkXCkpIC9LZXl3b3JkcyAoKSAvTW9kRGF0ZSAoRDoyMDI2MDYxMjE1MzMxMSswMCcwMCcpIC9Qcm9kdWNlciAoUmVwb3J0TGFiIFBERiBMaWJyYXJ5IC0gXChvcGVuc291cmNlXCkpIAogIC9TdWJqZWN0IChcKHVuc3BlY2lmaWVkXCkpIC9UaXRsZSAoXChhbm9ueW1vdXNcKSkgL1RyYXBwZWQgL0ZhbHNlCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9Db3VudCAxIC9LaWRzIFsgNCAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjggMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggNTA1Cj4+CnN0cmVhbQpHYXQ9JmQ7SVlsJ1JmLXBjPEp1T0FpTkwuaCZEIT8sLjFGWzc9QkM+UyZTQjkxWVdMTmc7aXE3IlhZXXVlQjFYIXE6cD5CXF01SSZuSWtmOEJSayI9Xis5Q1ROMyVcJ1UnMC4kXjFXJ18iMG50dVVtTkRPOSUzKmozdUFoLUo5cjJSWUxxPERBJkQ4IzcrdE1XRUNWOzZFQVdeOVBqcUZVR2dlUUs0LEtzNGdHWlI+OHEnLCMpcWVrLyoqMEByKzFyKFhNImQ5LXFLXk43YDowKE1jb1E0QkxIRmAmXE1LOlJUaUdWKSs4bUhcZE0zTS1TWEYhUWopaFMuSWdxQ0A1KmpLNTo2ITZaJkopOSNXM1dmbGlTakA3T091JlFRJmJcSD9CaGBmSGdpQnBXKio3TmgkLlZwP0wiIStIO1ovbkEpJTwrU2UqQFEoUF5BaGctWEsjV05CLkBnQ1VIQzM0MmIhUmBoKWtARDpDaSpqMFhhcVc6WnA9bXUwLUBXSCdzbzMyJCstYTlLJ2xUaWplO29eKFNOW0s9IXI/JD51K00xanVkZFZuSVJKZzMvY2RRLkNXJz0uSDAkZU4tOGYnVFpcIkQ+Y2VNO2VKbUJuaDdnXFUxKktnUVdMNDVDLHIvSU0mVGtJVDVRbzZOXzNTY0xIPmxRP34+ZW5kc3RyZWFtCmVuZG9iagp4cmVmCjAgOQowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDEwMiAwMDAwMCBuIAowMDAwMDAwMjA5IDAwMDAwIG4gCjAwMDAwMDAzMjEgMDAwMDAgbiAKMDAwMDAwMDUyNCAwMDAwMCBuIAowMDAwMDAwNTkyIDAwMDAwIG4gCjAwMDAwMDA4NzIgMDAwMDAgbiAKMDAwMDAwMDkzMSAwMDAwMCBuIAp0cmFpbGVyCjw8Ci9JRCAKWzw5YjljZTk4ZTJiMzcyOGZkZmFlYmQ5MmRiNWUzOGM5MD48OWI5Y2U5OGUyYjM3MjhmZGZhZWJkOTJkYjVlMzhjOTA+XQolIFJlcG9ydExhYiBnZW5lcmF0ZWQgUERGIGRvY3VtZW50IC0tIGRpZ2VzdCAob3BlbnNvdXJjZSkKCi9JbmZvIDYgMCBSCi9Sb290IDUgMCBSCi9TaXplIDkKPj4Kc3RhcnR4cmVmCjE1MjYKJSVFT0YK" download="Humaira_Anzum_Neha_CV_Demo.pdf" class="btn btn-outline cv-download">Download CV</a>
           </div>
         </div>
         <div class="portrait-wrap fade-in">
-          <div class="float-label label-1">Research</div>
-          <div class="float-label label-2">Teaching</div>
-          <div class="portrait" aria-label="Professional portrait placeholder"></div>
-          <div class="float-label label-3">Learning</div>
-          <div class="float-label label-4">Building</div>
-          <p class="portrait-note">Replace this placeholder with a professional portrait.</p>
+          <div class="portrait-panel">
+            <div class="portrait" aria-label="Professional portrait placeholder"></div>
+            <div class="portrait-tags" aria-label="Research identity tags">
+              <span>Research</span>
+              <span>Teaching</span>
+              <span>Learning</span>
+              <span>Building</span>
+            </div>
+            <p class="portrait-note">Replace this placeholder with a professional portrait.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1062,12 +1187,12 @@
                 <li>Raspberry Pi deployment for edge inference</li>
                 <li>Testing and evaluation in real-world scenarios</li>
               </ul>
-              <div class="project-actions"><a class="btn btn-primary" href="#">Architecture Diagram</a><a class="btn btn-outline" href="#videos">Demo Video</a><a class="btn btn-outline" href="#">Publication Link</a></div>
+              <div class="project-actions"><a class="btn btn-primary placeholder-link" href="#" data-title="Architecture Diagram" data-message="Replace this placeholder with your actual architecture diagram image or page.">Architecture Diagram</a><a class="btn btn-outline" href="#videos">Demo Video</a><a class="btn btn-outline placeholder-link" href="#" data-title="Publication Link" data-message="Add the publication DOI or paper page here.">Publication Link</a></div>
             </div>
           </article>
           <div class="supporting-stack">
-            <article class="project-card fade-in"><div class="project-media small"><strong>Supporting Project</strong></div><div class="project-body"><h3>Smart Spectacle for Visual Assistance</h3><p>Designed and implemented a smart spectacle prototype for visually impaired users by integrating object detection and OCR-based text recognition features.</p><div class="project-actions"><a class="btn btn-outline" href="#">Prototype Images</a><a class="btn btn-outline" href="#">Publication</a></div></div></article>
-            <article class="project-card fade-in"><div class="project-media small"><strong>Supporting Project</strong></div><div class="project-body"><h3>Healthcare Data Collection Platform</h3><p>Developed a mobile application to streamline medical data collection for glucose and hemoglobin-level-related research, with integrated AI-based inference support.</p><div class="project-actions"><a class="btn btn-outline" href="#">Screenshots</a><a class="btn btn-outline" href="#">Architecture</a></div></div></article>
+            <article class="project-card fade-in"><div class="project-media small"><strong>Supporting Project</strong></div><div class="project-body"><h3>Smart Spectacle for Visual Assistance</h3><p>Designed and implemented a smart spectacle prototype for visually impaired users by integrating object detection and OCR-based text recognition features.</p><div class="project-actions"><a class="btn btn-outline placeholder-link" href="#" data-title="Prototype Images" data-message="Replace this placeholder with a gallery or prototype images.">Prototype Images</a><a class="btn btn-outline placeholder-link" href="#" data-title="Publication" data-message="Add the publication link here.">Publication</a></div></div></article>
+            <article class="project-card fade-in"><div class="project-media small"><strong>Supporting Project</strong></div><div class="project-body"><h3>Healthcare Data Collection Platform</h3><p>Developed a mobile application to streamline medical data collection for glucose and hemoglobin-level-related research, with integrated AI-based inference support.</p><div class="project-actions"><a class="btn btn-outline placeholder-link" href="#" data-title="App Screenshots" data-message="Replace this placeholder with mobile app screenshots.">Screenshots</a><a class="btn btn-outline placeholder-link" href="#" data-title="Architecture Overview" data-message="Replace this placeholder with the healthcare platform architecture overview.">Architecture</a></div></div></article>
           </div>
         </div>
       </div>
@@ -1111,10 +1236,10 @@
           <button class="filter-btn" data-filter="ai">AI</button>
         </div>
         <div class="pub-list fade-in">
-          <article class="pub-item" data-category="assistive ai"><p class="pub-title">Assistive Object Identification System for Visually Impaired Users</p><p class="pub-meta">Humaira Anzum Neha, et al. • Conference / Journal • Year</p><p class="pub-links"><a href="#">DOI</a><a href="#">PDF</a></p></article>
-          <article class="pub-item" data-category="assistive ai"><p class="pub-title">Smart Spectacle for Visual Assistance Using Object Detection and OCR</p><p class="pub-meta">Humaira Anzum Neha, et al. • Conference / Journal • Year</p><p class="pub-links"><a href="#">DOI</a><a href="#">PDF</a></p></article>
-          <article class="pub-item" data-category="healthcare ai"><p class="pub-title">Healthcare Data Collection Platform with AI-Based Inference Support</p><p class="pub-meta">Humaira Anzum Neha, et al. • Conference / Journal • Year</p><p class="pub-links"><a href="#">DOI</a><a href="#">PDF</a></p></article>
-          <article class="pub-item" data-category="hci ai"><p class="pub-title">Ongoing HCI Research on Emerging AI-Assisted Technologies</p><p class="pub-meta">Research in Progress • Selected future work</p><p class="pub-links"><a href="#">Project Page</a></p></article>
+          <article class="pub-item" data-category="assistive ai"><p class="pub-title">Assistive Object Identification System for Visually Impaired Users</p><p class="pub-meta">Humaira Anzum Neha, et al. • Conference / Journal • Year</p><p class="pub-links"><a href="#" class="placeholder-link" data-title="DOI" data-message="Add the DOI link for this publication.">DOI</a><a href="#" class="placeholder-link" data-title="PDF" data-message="Add the PDF file/link for this publication.">PDF</a></p></article>
+          <article class="pub-item" data-category="assistive ai"><p class="pub-title">Smart Spectacle for Visual Assistance Using Object Detection and OCR</p><p class="pub-meta">Humaira Anzum Neha, et al. • Conference / Journal • Year</p><p class="pub-links"><a href="#" class="placeholder-link" data-title="DOI" data-message="Add the DOI link for this publication.">DOI</a><a href="#" class="placeholder-link" data-title="PDF" data-message="Add the PDF file/link for this publication.">PDF</a></p></article>
+          <article class="pub-item" data-category="healthcare ai"><p class="pub-title">Healthcare Data Collection Platform with AI-Based Inference Support</p><p class="pub-meta">Humaira Anzum Neha, et al. • Conference / Journal • Year</p><p class="pub-links"><a href="#" class="placeholder-link" data-title="DOI" data-message="Add the DOI link for this publication.">DOI</a><a href="#" class="placeholder-link" data-title="PDF" data-message="Add the PDF file/link for this publication.">PDF</a></p></article>
+          <article class="pub-item" data-category="hci ai"><p class="pub-title">Ongoing HCI Research on Emerging AI-Assisted Technologies</p><p class="pub-meta">Research in Progress • Selected future work</p><p class="pub-links"><a href="#" class="placeholder-link" data-title="Project Page" data-message="Add the project page or research page link here.">Project Page</a></p></article>
         </div>
       </div>
     </section>
@@ -1170,18 +1295,18 @@
         <div class="contact-grid">
           <div class="contact-card fade-in">
             <h3>Professional Links</h3>
-            <p class="section-lead">Replace the placeholder links with your current academic and professional profiles.</p>
+            <p class="section-lead">Professional profiles open directly in a new tab. Replace these URLs with final profile links when ready.</p>
             <div class="contact-links">
-              <a href="mailto:your.email@example.com">Email</a>
-              <a href="#">Google Scholar</a>
-              <a href="#">GitHub</a>
-              <a href="#">LinkedIn</a>
+              <a href="mailto:humairaanzumn@gmail.com">Email</a>
+              <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a>
+              <a href="https://github.com/humairaneha" target="_blank" rel="noopener">GitHub</a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
           </div>
-          <form class="contact-card contact-form fade-in" onsubmit="event.preventDefault(); alert('This is a front-end demo. Connect this form to Formspree, Netlify Forms, or your backend.');">
-            <input type="text" placeholder="Your name" required>
-            <input type="email" placeholder="Your email" required>
-            <textarea placeholder="Your message" required></textarea>
+          <form class="contact-card contact-form fade-in" id="contactForm">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Your email" required>
+            <textarea name="message" placeholder="Your message" required></textarea>
             <button class="btn btn-primary" type="submit">Send Message</button>
           </form>
         </div>
@@ -1201,19 +1326,19 @@
   </div>
 
   <script>
-    const rotatingWords = ['Human-Computer Interaction', 'Large Language Models', 'Computer Vision', 'Medical AI'];
-    const rotatingText = document.getElementById('rotatingText');
-    let wordIndex = 0;
-    setInterval(() => {
-      wordIndex = (wordIndex + 1) % rotatingWords.length;
-      rotatingText.textContent = rotatingWords[wordIndex];
-    }, 2200);
-
     const progressBar = document.getElementById('progressBar');
+    const modal = document.getElementById('videoModal');
+    const modalContent = document.getElementById('modalContent');
+
+    function openModal(title, message) {
+      modalContent.innerHTML = `<div><h2>${title}</h2><p>${message}</p></div>`;
+      modal.classList.add('active');
+    }
+
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      progressBar.style.width = `${(scrollTop / docHeight) * 100}%`;
+      progressBar.style.width = `${docHeight > 0 ? (scrollTop / docHeight) * 100 : 0}%`;
     });
 
     const sections = document.querySelectorAll('section[id]');
@@ -1260,14 +1385,37 @@
       });
     });
 
-    const modal = document.getElementById('videoModal');
-    const modalContent = document.getElementById('modalContent');
     document.querySelectorAll('.video-card').forEach(card => {
       card.addEventListener('click', () => {
-        modalContent.innerHTML = `<div><h2>${card.dataset.video}</h2><p>Replace this placeholder with a YouTube iframe or local MP4 video.</p></div>`;
-        modal.classList.add('active');
+        openModal(card.dataset.video, 'Replace this placeholder with a YouTube iframe or local MP4 video.');
       });
     });
+
+    document.querySelectorAll('.placeholder-link').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        openModal(link.dataset.title || 'Link Placeholder', link.dataset.message || 'Replace this placeholder with the final link.');
+      });
+    });
+
+
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const name = contactForm.querySelector('[name="name"]').value.trim();
+        const email = contactForm.querySelector('[name="email"]').value.trim();
+        const message = contactForm.querySelector('[name="message"]').value.trim();
+        const subject = encodeURIComponent(`Portfolio Contact from ${name || 'Website Visitor'}`);
+        const body = encodeURIComponent(`Name: ${name}
+Email: ${email}
+
+Message:
+${message}`);
+        window.location.href = `mailto:humairaanzumn@gmail.com?subject=${subject}&body=${body}`;
+      });
+    }
+
     document.getElementById('closeModal').addEventListener('click', () => modal.classList.remove('active'));
     modal.addEventListener('click', e => {
       if (e.target === modal) modal.classList.remove('active');
